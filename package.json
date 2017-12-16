@@ -1,10 +1,10 @@
 {
-  "name": "parkes-uniform-errors",
+  "name": "parkes-rest-error",
   "version": "0.1.0",
   "description": "Convert exceptions to uniform RESTful JSON format",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -w test"
   },
   "engines": {
     "node": ">=7.6.0"
@@ -32,6 +32,5 @@
     "eslint-plugin-react": "^7.4.0",
     "mocha": "^4.0.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
