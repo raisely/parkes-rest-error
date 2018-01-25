@@ -4,7 +4,7 @@ A minimal framework and middleware for throwing REST-ful errors. Built for Koa 2
 ## Getting Started
 
 ```bash
-npm install -save parkes-rest-error
+npm install --save raisely/parkes-rest-error
 ```
 
 ##### Your server app:
