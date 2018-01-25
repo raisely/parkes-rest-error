@@ -90,7 +90,7 @@ throw new RestError({
 });
 ```
 
-The `code` attribute will correspond with either a pre-defined error code within
+The `code` attribute will correspond with either a predefined error code within
 `lib/errorCodes.js`, or by using the custom `.addError` or `.addErrors` methods.
 
 #### Adding custom error codes:
@@ -138,7 +138,7 @@ const errorHandler = new ErrorHandler({ log: true });
 
 // define custom formatter
 addFormat(error => {
-  if (e.name === "HE WHO SHALL NOT BE NAMED") {
+  if (error.name === "HE WHO SHALL NOT BE NAMED") {
     return {
       status: 400, // HTTP status code to set,
       errors: [{
@@ -153,7 +153,7 @@ addFormat(error => {
   return false; // negates filter (since it's not a match)
 });
 
-app.use(errorHandler); // pass midleware with custom filter
+app.use(errorHandler); // pass middleware with custom filter
 ```
 
 The above code will watch Koa contexts and try to generate useful RestErrors depending
