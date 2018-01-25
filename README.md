@@ -52,21 +52,41 @@ given the same `code`, we can keep controller code leaner by just specifying the
 For multiple errors, pass an array of errors, and you can set a default code and/or status
 ```js
 throw new RestError({
-	status: 404,
-	message: 'Profile could not be found',
-	code: 'not found',
+  status: 404,
+  message: 'Profile could not be found',
+  code: 'not found',
 });
 ```
+// adding multiple error code definitions (as object literal)
+addErrors({
+  'name of code': { title: 'This is an error', detail: 'something' },
+  'name of another code': { title: 'This is an error', detail: 'something' },
+});
+
+// adding multiple error code definitions (as object Array)
+addErrors([
+  { 'name of code': { title: 'This is an error', detail: 'something' }},
+  { 'name of another code': { title: 'This is an error', detail: 'something' }},
+]);
+
+// the added error codes can then be referenced via the `code` attribute
+async function someKoaContext(ctx){
+  throw new RestError({
+    status: 403,
+    message: "I'm sorry Dave, I'm afraid I can't do that",
+    code: 'name of code',
+  });
+}
 
 ##### Multiple errors, with defaults for properties
 ```js
 throw new RestError({
-	status: 400,
-	code: 'invalid syntax',
-	errors: [
-		{ message: 'email is not valid' , code: 'validation error' }, // status: 400
-		{ message: 'public is malformed' }, // code: 'invalid syntax', status: 400,
-	}],
+  status: 400,
+  code: 'invalid syntax',
+  errors: [
+    { message: 'email is not valid' , code: 'validation error' }, // status: 400
+    { message: 'public is malformed' }, // code: 'invalid syntax', status: 400,
+  }],
 });
 ```
 
@@ -82,23 +102,23 @@ addError('name of code', { title: 'This is an error', detail: 'something' });
 
 // adding multiple error code definitions (as object literal)
 addErrors({
-	'name of code': { title: 'This is an error', detail: 'something' },
-	'name of another code': { title: 'This is an error', detail: 'something' },
+  'name of code': { title: 'This is an error', detail: 'something' },
+  'name of another code': { title: 'This is an error', detail: 'something' },
 });
 
 // adding multiple error code definitions (as object Array)
 addErrors([
-	{ 'name of code': { title: 'This is an error', detail: 'something' }},
-	{ 'name of another code': { title: 'This is an error', detail: 'something' }},
+  { 'name of code': { title: 'This is an error', detail: 'something' }},
+  { 'name of another code': { title: 'This is an error', detail: 'something' }},
 ]);
 
 // the added error codes can then be referenced via the `code` attribute
 async function someKoaContext(ctx){
-	throw new RestError({
-		status: 403,
-		message: "I'm sorry Dave, I'm afraid I can't do that",
-		code: 'name of code',
-	});
+  throw new RestError({
+    status: 403,
+    message: "I'm sorry Dave, I'm afraid I can't do that",
+    code: 'name of code',
+  });
 }
 ```
 
